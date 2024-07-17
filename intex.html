@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Display Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .results-container {
+            margin-top: 20px;
+        }
+        .results {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Display Page</h1>
+    
+    <div class="input-container">
+        <label for="start">Start Number:</label>
+        <input type="number" id="start" value="1">
+        
+        <label for="end">End Number:</label>
+        <input type="number" id="end" value="100">
+        
+        <button onclick="displayNumbers()">Display Numbers</button>
+        <button onclick="displayOddNumbers()">Display Odd Numbers</button>
+        <button onclick="displayEvenNumbers()">Display Even Numbers</button>
+        <button onclick="displayPrimeNumbers()">Display Prime Numbers</button>
+    </div>
+    
+    <div class="results-container">
+        <div class="results" id="numbers"></div>
+        <div class="results" id="oddNumbers"></div>
+        <div class="results" id="evenNumbers"></div>
+        <div class="results" id="primeNumbers"></div>
+    </div>
+    
+    <script>
+        // Function to display numbers from start to end
+        function displayNumbers() {
+            let start = parseInt(document.getElementById("start").value);
+            let end = parseInt(document.getElementById("end").value);
+            let result = "";
+            for (let i = start; i <= end; i++) {
+                result += i + " ";
+            }
+            document.getElementById("numbers").textContent = "Numbers: " + result;
+        }
+        
+        // Function to display odd numbers from start to end
+        function displayOddNumbers() {
+            let start = parseInt(document.getElementById("start").value);
+            let end = parseInt(document.getElementById("end").value);
+            let result = "";
+            for (let i = start; i <= end; i++) {
+                if (i % 2 !== 0) {
+                    result += i + " ";
+                }
+            }
+            document.getElementById("oddNumbers").textContent = "Odd Numbers: " + result;
+        }
+        
+        // Function to display even numbers from start to end
+        function displayEvenNumbers() {
+            let start = parseInt(document.getElementById("start").value);
+            let end = parseInt(document.getElementById("end").value);
+            let result = "";
+            for (let i = start; i <= end; i++) {
+                if (i % 2 === 0) {
+                    result += i + " ";
+                }
+            }
+            document.getElementById("evenNumbers").textContent = "Even Numbers: " + result;
+        }
+        
+        // Function to check if a number is prime
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true; // 2 is a prime number
+            if (num % 2 === 0) return false; // Even numbers other than 2 are not prime
+            
+            // Check divisibility from 3 upwards, skipping even numbers
+            for (let i = 3; i <= Math.sqrt(num); i += 2) {
+                if (num % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        // Function to display prime numbers from start to end
+        function displayPrimeNumbers() {
+            let start = parseInt(document.getElementById("start").value);
+            let end = parseInt(document.getElementById("end").value);
+            let result = "";
+            for (let i = start; i <= end; i++) {
+                if (isPrime(i)) {
+                    result += i + " ";
+                }
+            }
+            document.getElementById("primeNumbers").textContent = "Prime Numbers: " + result;
+        }
+    </script>
+</body>
+</html>
